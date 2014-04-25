@@ -83,7 +83,6 @@ public class Player {
         return 工人閒置區;
     }
 
-    
 //  A{文明,食物,资源,科技}={0,0,0,0}
     private int 文明;
     private Score 點數;
@@ -345,6 +344,7 @@ public class Player {
         this.藍點資源供應區 = 藍點資源供應區;
     }
 
+    private List<Card> init牌;
     private List<Card> 手上的牌;
     private List<Card> 桌上的牌;
     private List<Card> 奇蹟待建區;
@@ -387,14 +387,14 @@ public class Player {
 
         for (int k = 0; k < this.get手上的牌().size(); k++) {
             System.out.println("這是目前手上的牌 " + k + " " + this.get手上的牌().get(k).toString(1));
-            if (card.卡名 == this.get手上的牌().get(k).卡名) {
+            if (card.get卡名() == this.get手上的牌().get(k).get卡名()) {
                 return true;
             }
 
         }
         for (int k = 0; k < this.get桌上的牌().size(); k++) {
             System.out.println("這是目前桌上的牌 " + k + " " + this.get桌上的牌().get(k).toString(1));
-            if (card.卡名 == this.get桌上的牌().get(k).卡名) {
+            if (card.get卡名() == this.get桌上的牌().get(k).get卡名()) {
                 return true;
             }
 
@@ -413,14 +413,14 @@ public class Player {
 
         for (int k = 0; k < this.get手上的牌().size(); k++) {
             System.out.println("這是目前手上的牌 " + k + " " + this.get手上的牌().get(k).toString(1));
-            if (card.時代 == this.get手上的牌().get(k).時代) {
+            if (card.get時代() == this.get手上的牌().get(k).get時代()) {
                 return true;
             }
 
         }
         for (int k = 0; k < this.get桌上的牌().size(); k++) {
             System.out.println("這是目前桌上的牌 " + k + " " + this.get桌上的牌().get(k).toString(1));
-            if (card.時代 == this.get桌上的牌().get(k).時代) {
+            if (card.get時代() == this.get桌上的牌().get(k).get時代()) {
                 return true;
             }
         }
@@ -481,6 +481,16 @@ public class Player {
         奇蹟待建區 = new ArrayList<Card>();
         奇蹟完成區 = new ArrayList<Card>();
         工人閒置區 = new WorkPool();
+        init牌 = new Cards().copyInitCards();
+        
+        init牌.get(0).getYellowPoints().setPoints(1);
+        init牌.get(1).getYellowPoints().setPoints(0);
+        init牌.get(2).getYellowPoints().setPoints(2);
+        init牌.get(3).getYellowPoints().setPoints(2);
+        init牌.get(4).getYellowPoints().setPoints(1);
+        
+        
+
     }
 
     public int get文明() {
@@ -585,34 +595,33 @@ public class Player {
     public boolean doPlayCard(int cardNum) throws AgesException {
 //         Card card=new Card();
 //         card=this.get手上的牌().get(cardNum);
-        if ((cardNum+1)> this.get手上的牌().size()){
-        System.out.println("... index of cards-on-hand should be from 0 to "+(this.get手上的牌().size()-1));
-        
-            return false; 
+        if ((cardNum + 1) > this.get手上的牌().size()) {
+            System.out.println("... index of cards-on-hand should be from 0 to " + (this.get手上的牌().size() - 1));
+
+            return false;
         }
-        
+
         this.get桌上的牌().add(this.get手上的牌().get(cardNum));
-        
-        
-        System.out.println("這張牌的類型是"+this.get手上的牌().get(cardNum).類型);
+
+        System.out.println("這張牌的類型是" + this.get手上的牌().get(cardNum).get類型());
         //        當打出科技牌的時候
 //        灌溉為例
-        System.out.println("右上="+this.get手上的牌().get(cardNum).get右上());
-        if (this.get手上的牌().get(cardNum).類型 ==CardType.科技) {
+        System.out.println("右上=" + this.get手上的牌().get(cardNum).get右上());
+        if (this.get手上的牌().get(cardNum).get類型() == CardType.科技) {
 //            System.out.println("123");
             switch (this.get手上的牌().get(cardNum).get右上()) {
                 case "農場": {
                     System.out.println("準備設定已打出");
-                    this.農場[this.get手上的牌().get(cardNum).時代].set打出(true);
-                    System.out.println("打出了嗎?"+this.農場[this.get手上的牌().get(cardNum).時代].is打出());
+                    this.農場[this.get手上的牌().get(cardNum).get時代()].set打出(true);
+                    System.out.println("打出了嗎?" + this.農場[this.get手上的牌().get(cardNum).get時代()].is打出());
                 }
                 break;
             }
 
-        }else{
-            
+        } else {
+
         }
-           this.get手上的牌().remove(cardNum);
+        this.get手上的牌().remove(cardNum);
 
         return true;
     }
@@ -633,7 +642,7 @@ public class Player {
         this.set失敗原因("無失敗紀錄");
 
         if (!civilCounter.isEnoughToPay(cost)) {//如果內政點數不夠支付的話
-            this.set失敗原因("NOT ENOUGH CIVIL POINTS TO PAY THIS CARD," + card.卡名);
+            this.set失敗原因("NOT ENOUGH CIVIL POINTS TO PAY THIS CARD," + card.get卡名());
             return false;
         }
 
@@ -720,28 +729,35 @@ public class Player {
 
         System.out.print("\n   礦山 (Ages)黃點=>藍點, ");
         for (int k = 3; k >= 0; k--) {
-            if (this.礦山[k].is打出() == true)
-            System.out.print(" (" + strAges[k] + ")" + get礦山(k).toString(1));
+            if (this.礦山[k].is打出() == true) {
+                System.out.print(" (" + strAges[k] + ")" + get礦山(k).toString(1));
+            }
         }
         System.out.print("\n   實驗室 (Ages)黃點=>藍點, ");
         for (int k = 3; k >= 0; k--) {
-             if (this.實驗室[k].is打出() == true)
-            System.out.print(" (" + strAges[k] + ")" + get實驗室(k).toString(2));
+            if (this.實驗室[k].is打出() == true) {
+                System.out.print(" (" + strAges[k] + ")" + get實驗室(k).toString(2));
+            }
         }
         System.out.print("\n   神廟 (Ages)黃點=>藍點, ");
         for (int k = 3; k >= 0; k--) {
-             if (this.神廟[k].is打出() == true)
-            System.out.print(" (" + strAges[k] + ")" + get神廟(k).toString(2));
+            if (this.神廟[k].is打出() == true) {
+                System.out.print(" (" + strAges[k] + ")" + get神廟(k).toString(2));
+            }
         }
         System.out.print("\n   步兵 (Ages)黃點=>藍點, ");
         for (int k = 3; k >= 0; k--) {
-             if (this.步兵[k].is打出() == true)
-            System.out.print(" (" + strAges[k] + ")" + get步兵(k).toString(2));
+            if (this.步兵[k].is打出() == true) {
+                System.out.print(" (" + strAges[k] + ")" + get步兵(k).toString(2));
+            }
         }
 
     }
 
     public void showCards() {
+        System.out.print("\n   init牌 ");
+        showInitCards();
+
         System.out.print("\n   手牌 ");
         showCardsOnHand();
         System.out.print("   工人閒置區 " + this.get工人閒置區());
@@ -754,16 +770,24 @@ public class Player {
         show已完成的奇蹟();
     }
 
+    public void showInitCards() {
+        System.out.println();
+        for (int k = 0; k < init牌.size(); k++) {
+            System.out.println("     " + k + init牌.get(k).toString(6));
+        }
+
+    }
+
     public void showCardsOnHand() {
         for (int k = 0; k < 手上的牌.size(); k++) {
-            System.out.print(" " +k+ 手上的牌.get(k).toString(5));
+            System.out.print(" " + k + 手上的牌.get(k).toString(5));
         }
         System.out.println();
     }
 
     public void showCardsOnTable() {
         for (int k = 0; k < 桌上的牌.size(); k++) {
-            System.out.print(" " +k+ 桌上的牌.get(k).toString(5));
+            System.out.print(" " + k + 桌上的牌.get(k).toString(5));
         }
         //   System.out.println();
     }

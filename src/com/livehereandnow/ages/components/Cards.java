@@ -6,6 +6,7 @@
 package com.livehereandnow.ages.components;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,8 +16,17 @@ import java.util.List;
 public class Cards implements CardType {
 
     List<Card> cards;
-    List<Card> cardwa;
+    List<Card> initCards;
 
+    public List<Card> copyInitCards(){
+        List<Card> temp =new ArrayList<>();
+        for (int k=0; k<initCards.size();k++){
+            temp.add(initCards.get(k));
+        }
+        
+        
+        return temp;
+    }
     public List<Card> get所有的牌() {
         return cards;
     }
@@ -24,7 +34,7 @@ public class Cards implements CardType {
     public List<Card> get時代A內政牌() {
         List<Card> 時代A內政牌 = new ArrayList<>();
         for (int k = 0; k < cards.size(); k++) {
-            if ((cards.get(k).時代 == 0) && (cards.get(k).牌背 == 內政)) {
+            if ((cards.get(k).get時代() == 0) && (cards.get(k).get牌背() == 內政)) {
                 時代A內政牌.add(cards.get(k));
             }
         }
@@ -34,7 +44,7 @@ public class Cards implements CardType {
     public List<Card> get某時代內政牌(int age) {
         List<Card> 內政牌 = new ArrayList<>();
         for (int k = 0; k < cards.size(); k++) {
-            if ((cards.get(k).時代 == age) && (cards.get(k).牌背 == 內政)) {
+            if ((cards.get(k).get時代() == age) && (cards.get(k).get牌背() == 內政)) {
                 內政牌.add(cards.get(k));
             }
         }
@@ -46,21 +56,21 @@ public class Cards implements CardType {
         switch (test) {
             case 1://時代1的科技牌
                 for (int k = 0; k < cards.size(); k++) {
-                    if ((cards.get(k).時代 == 1) && (cards.get(k).類型 == 科技)) {
+                    if ((cards.get(k).get時代() == 1) && (cards.get(k).get類型() == 科技)) {
                         內政牌.add(cards.get(k));
                     }
                 }
                 break;
             case 2://時代0跟時代1的奇蹟跟領袖
                 for (int k = 0; k < cards.size(); k++) {
-                    if ((cards.get(k).類型 == 奇蹟) || (cards.get(k).類型 == 領袖)) {
+                    if ((cards.get(k).get類型() == 奇蹟) || (cards.get(k).get類型() == 領袖)) {
                         內政牌.add(cards.get(k));
                     }
                 }
                 break;
             case 3://所有時代的領袖牌
                 for (int k = 0; k < cards.size(); k++) {
-                    if ((cards.get(k).類型 == 領袖)) {
+                    if ((cards.get(k).get類型() == 領袖)) {
                         內政牌.add(cards.get(k));
                         內政牌.add(cards.get(k));
                     }
@@ -68,7 +78,7 @@ public class Cards implements CardType {
                 break;
             case 4://所有時代的奇蹟
                 for (int k = 0; k < cards.size(); k++) {
-                    if ((cards.get(k).類型 == 奇蹟)) {
+                    if ((cards.get(k).get類型() == 奇蹟)) {
                         內政牌.add(cards.get(k));
                         內政牌.add(cards.get(k));
                     }
@@ -81,6 +91,21 @@ public class Cards implements CardType {
     }
 
     public Cards() {
+        initCards = new ArrayList<>();
+        Card card1 = new Card("Philosophy", 0, "實驗室");//神廟
+        Card card2 = new Card("Religion", 0, "神廟");//
+        Card card3 = new Card("Agriculture", 0, "農場");
+        Card card4 = new Card("Bronze", 0, "礦山");
+        Card card5 = new Card("Warriors", 0, "???");
+//        Card card6 = new Card("Despotism", 0, "???");
+        initCards.add(card1);
+        initCards.add(card2);
+        initCards.add(card3);
+        initCards.add(card4);
+        initCards.add(card5);
+//        initCards.add(card6);
+        
+        
 
         cards = new ArrayList<>();
         cards.add(new Card(1, "亞歷山大大帝", 0, 內政, 領袖, 綠色, "領袖", "每一個紅色科技牌上的黃點，軍力+1", "0"));

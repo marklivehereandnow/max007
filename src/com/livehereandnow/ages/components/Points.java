@@ -20,4 +20,10 @@ public class Points {
     public void addPoints(int k) {
         this.points += k;
     }    
+
+    @Override
+    public String toString() {
+        return ""+points ;
+    }
+    
 }

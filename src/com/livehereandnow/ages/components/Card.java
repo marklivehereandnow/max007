@@ -10,8 +10,20 @@ package com.livehereandnow.ages.components;
  * @author max
  */
 public class Card implements CardType {
-    Points bluePoints;
-    Points yellowPoints;
+
+    private Points bluePoints;
+    private Points yellowPoints;
+
+    public Points getBluePoints() {
+        return bluePoints;
+    }
+
+    public Points getYellowPoints() {
+        return yellowPoints;
+    }
+
+    
+    
     public Card(int ID, String 卡名, int 時代, int 牌背, int 類型, int 顏色, String 右上, String 內容, String 建造成本) {
 
         this.右上 = 右上;
@@ -24,9 +36,9 @@ public class Card implements CardType {
         this.類型 = 類型;
 //        this.建造成本 = 建造成本;
         wonderStage = new WonderStage(建造成本);
-        bluePoints=new Points();
-        yellowPoints=new Points();
-        
+        bluePoints = new Points();
+        yellowPoints = new Points();
+
     }
 
     public String get右上() {
@@ -76,20 +88,20 @@ public class Card implements CardType {
 //    public void set建造成本(String 建造成本) {
 //        this.建造成本 = 建造成本;
 //    }
-    String 右上;
-    int 編號;
-    int 加權值;
-    String 內容;
-    int 顏色;
-    int ID;
-    int 牌背;
-    int 時代;
-    String 卡名;
+    private String 右上;
+    private int 編號;
+    private int 加權值;
+    private String 內容;
+    private int 顏色;
+    private int ID;
+    private int 牌背;
+    private int 時代;
+    private String 卡名;
 //    String 建造成本;
 //    int[] 奇蹟建造成本=new int[5];//最多5個階段由階段0開始
 //    int 奇蹟建造階段;//初值為0表示正在建造0階段 
-    int 類型;//0=領袖,1=奇蹟.2=黃牌
-    WonderStage wonderStage;
+    private int 類型;//0=領袖,1=奇蹟.2=黃牌
+    private WonderStage wonderStage;
 //    public int get奇蹟建造成本(int k) {
 //        return 奇蹟建造成本[k];
 //    }
@@ -116,6 +128,22 @@ public class Card implements CardType {
 
     public void set加權值(int 加權值) {
         this.加權值 = 加權值;
+    }
+
+    /**
+     * Basic info for initial 6 cards for each player
+     *
+     * @param 卡名
+     * @param 時代
+     * @param 右上
+     */
+    public Card(String 卡名, int 時代, String 右上) {
+        this.卡名 = 卡名;
+        this.時代 = 時代;
+        this.右上 = 右上;
+        yellowPoints=new Points();
+        bluePoints=new Points();
+        
     }
 
     public Card(int 編號, String 卡名, int 時代, int 類型) {
@@ -228,7 +256,16 @@ public class Card implements CardType {
                 if (卡名.equalsIgnoreCase("")) {
                     return "[] ";
                 }
-                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + get類型Name() +"-"+get右上()+ "-建造成本:" + wonderStage + "] ";
+                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + get類型Name() + "-" + get右上() + "-建造成本:" + wonderStage + "] ";
+           
+                
+             case 6://  0[A-Philosophy--實驗室  黃點:0 藍點:0]
+                if (卡名.equalsIgnoreCase("")) {
+                    return "[] ";
+                }
+                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() +"  黃點:"+yellowPoints+" 藍點:"+bluePoints + "] ";
+           
+            
             default:
                 return toString();
         }

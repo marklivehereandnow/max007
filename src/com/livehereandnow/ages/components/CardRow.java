@@ -83,7 +83,7 @@ public class CardRow {
 
     private void addCardsStep2() {
         for (int k = 0; k < cardRow.size(); k++) {
-            if (cardRow.get(k).卡名.length() == 0) {
+            if (cardRow.get(k).get卡名().length() == 0) {
                 cardRow.remove(k);
             }
         }

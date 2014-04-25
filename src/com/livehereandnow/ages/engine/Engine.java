@@ -79,12 +79,21 @@ public class Engine {
     public boolean doVersion() {
 
         System.out.println();
+          System.out.println("  === ver 0.37 ===  2014-4-25, 17:00, by Mark　");
+        System.out.println("    1. introduce initCards on Cards");
+        System.out.println("    2. on status, show initCards with Yellow and Blue points ");
+        System.out.println("    3. secure Cards' private fields and fix calling methods");
+        System.out.println("    4. ###Warning### String == IS NOT RIGHT");
+        System.out.println();
+        
+        
         System.out.println("  === ver 0.36 ===  2014-4-25, 16:00, by Mark　");
         System.out.println("    1. introduce Points.java");
         System.out.println("    2. ***** new BlueBank and YellowBank extends Points *****");
         System.out.println("    3. done, play 2, java.lang.IndexOutOfBoundsException: Index: 2, Size: 2");
         System.out.println("    4. on each card, add yellowPoints and bluePoints using Points.java");
-        System.out.println(); System.out.println("  === ver 0.35 ===  2014-4-25, 15:30, by Mark　");
+        System.out.println();
+        System.out.println("  === ver 0.35 ===  2014-4-25, 15:30, by Mark　");
         System.out.println("    1. introduce HappyFaces.java");
         System.out.println("    2. split Score from Player.java");
         System.out.println("    3. TODO play 2, java.lang.IndexOutOfBoundsException: Index: 2, Size: 2");
