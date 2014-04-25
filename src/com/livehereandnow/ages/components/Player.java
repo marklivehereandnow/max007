@@ -44,6 +44,16 @@ public class Player {
     }
 
     public boolean doFarm() throws AgesException {
+        // draft by Mark, 
+        // 2014-4-25 17:11
+        System.out.println("   === draft by Mark (start)");
+
+        this.init牌.get(2).getYellowPoints().addPoints(1);
+        this.工人閒置區.add黃點(-1);
+        System.out.println("   === draft by Mark (end)");
+        //
+
+        //
         System.out.println("玩家的DOFarm");
         System.out.println("工人區" + 工人閒置區.get黃點());
         this.工人閒置區.set黃點(工人閒置區.get黃點() - 1);
@@ -344,6 +354,15 @@ public class Player {
         this.藍點資源供應區 = 藍點資源供應區;
     }
 
+    private Card government;
+
+    public Card getGovernment() {
+        return government;
+    }
+
+    public void setGovernment(Card government) {
+        this.government = government;
+    }
     private List<Card> init牌;
     private List<Card> 手上的牌;
     private List<Card> 桌上的牌;
@@ -482,14 +501,14 @@ public class Player {
         奇蹟完成區 = new ArrayList<Card>();
         工人閒置區 = new WorkPool();
         init牌 = new Cards().copyInitCards();
-        
+
         init牌.get(0).getYellowPoints().setPoints(1);
         init牌.get(1).getYellowPoints().setPoints(0);
         init牌.get(2).getYellowPoints().setPoints(2);
         init牌.get(3).getYellowPoints().setPoints(2);
         init牌.get(4).getYellowPoints().setPoints(1);
-        
-        
+
+        government = new Cards().getInitGovernment();
 
     }
 
@@ -755,6 +774,7 @@ public class Player {
     }
 
     public void showCards() {
+        showGovernmentCard();
         System.out.print("\n   init牌 ");
         showInitCards();
 
@@ -768,6 +788,7 @@ public class Player {
         show建造中的奇蹟();
         System.out.print("   已完成的奇蹟 ");
         show已完成的奇蹟();
+        System.out.println("");
     }
 
     public void showInitCards() {
@@ -775,6 +796,11 @@ public class Player {
         for (int k = 0; k < init牌.size(); k++) {
             System.out.println("     " + k + init牌.get(k).toString(6));
         }
+
+    }
+
+    public void showGovernmentCard() {
+        System.out.println("   Government: " + government.toString(7));
 
     }
 

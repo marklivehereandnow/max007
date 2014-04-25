@@ -13,6 +13,20 @@ public class Card implements CardType {
 
     private Points bluePoints;
     private Points yellowPoints;
+    
+    //for Government Cards
+    private Points whitePoints;
+    private Points redPoints;
+
+    public Points getWhitePoints() {
+        return whitePoints;
+    }
+
+    public Points getRedPoints() {
+        return redPoints;
+    }
+    
+    
 
     public Points getBluePoints() {
         return bluePoints;
@@ -143,6 +157,9 @@ public class Card implements CardType {
         this.右上 = 右上;
         yellowPoints=new Points();
         bluePoints=new Points();
+        whitePoints=new Points();
+        redPoints=new Points();
+        
         
     }
 
@@ -264,6 +281,11 @@ public class Card implements CardType {
                     return "[] ";
                 }
                 return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() +"  黃點:"+yellowPoints+" 藍點:"+bluePoints + "] ";
+            case 7:// for Government card, 
+                if (卡名.equalsIgnoreCase("")) {
+                    return "[] ";
+                }
+                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() +"  White點:"+whitePoints+" Red點:"+redPoints + "] ";
            
             
             default:

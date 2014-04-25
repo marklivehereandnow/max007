@@ -17,16 +17,21 @@ public class Cards implements CardType {
 
     List<Card> cards;
     List<Card> initCards;
+    Card initGovernment;
 
-    public List<Card> copyInitCards(){
-        List<Card> temp =new ArrayList<>();
-        for (int k=0; k<initCards.size();k++){
+    public Card getInitGovernment() {
+        return initGovernment;
+    }
+
+    public List<Card> copyInitCards() {
+        List<Card> temp = new ArrayList<>();
+        for (int k = 0; k < initCards.size(); k++) {
             temp.add(initCards.get(k));
         }
-        
-        
+
         return temp;
     }
+
     public List<Card> get所有的牌() {
         return cards;
     }
@@ -91,6 +96,11 @@ public class Cards implements CardType {
     }
 
     public Cards() {
+        initGovernment = new Card("Despotism", 0, "???");
+        initGovernment.getWhitePoints().setPoints(4);
+        initGovernment.getRedPoints().setPoints(2);
+        
+        
         initCards = new ArrayList<>();
         Card card1 = new Card("Philosophy", 0, "實驗室");//神廟
         Card card2 = new Card("Religion", 0, "神廟");//
@@ -104,8 +114,6 @@ public class Cards implements CardType {
         initCards.add(card4);
         initCards.add(card5);
 //        initCards.add(card6);
-        
-        
 
         cards = new ArrayList<>();
         cards.add(new Card(1, "亞歷山大大帝", 0, 內政, 領袖, 綠色, "領袖", "每一個紅色科技牌上的黃點，軍力+1", "0"));

@@ -98,13 +98,15 @@ public class EngineCore {
 
         cardRow.show();
         System.out.println();
-        System.out.println("   === Round #" + roundNum + " ===");
-        System.out.print("   --- Player A is " + 玩家[0].getName() + " ---");
-        玩家[0].showStatus();
-        System.out.print("\n\n   --- Player B is " + 玩家[1].getName() + " ---");
-        玩家[1].showStatus();
-        System.out.println();
-        System.out.println();
+        System.out.println("   === Round #" + roundNum+", " +this.當前玩家.getName()+ " === ");
+         this.當前玩家.showCards();
+        
+//        System.out.print("   --- Player A is " + 玩家[0].getName() + " ---");
+//        玩家[0].showStatus();
+//        System.out.print("\n\n   --- Player B is " + 玩家[1].getName() + " ---");
+//        玩家[1].showStatus();
+//        System.out.println();
+//        System.out.println();
         return true;
     }
 

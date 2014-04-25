@@ -35,6 +35,7 @@ public class Engine {
             case "construct-wonder":
             case "wonder":
                 return core.doConstructWonder();
+
             case "farm":
                 return core.doFarm();
             case "help":
@@ -79,14 +80,27 @@ public class Engine {
     public boolean doVersion() {
 
         System.out.println();
-          System.out.println("  === ver 0.37 ===  2014-4-25, 17:00, by Mark　");
+        System.out.println("    ###Warning### String == IS NOT RIGHT");
+        
+        System.out.println("  === ver 0.38 ===  2014-4-25, 17:45, by Mark　");
+        System.out.println("    1. *** introduce government with white and red points***");
+        System.out.println("    2. change status to show current player only");
+        System.out.println("    3. show government card info on status with toString(7) ");
+        
+       
+        System.out.println();
+        System.out.println("  === ver 0.37 ===  2014-4-25, 17:20, by Mark　");
+        System.out.println("    1. *** draf farm action***");
+        System.out.println("    ###Warning### String == IS NOT RIGHT");
+        System.out.println();
+
+        System.out.println("  === ver 0.37 ===  2014-4-25, 17:00, by Mark　");
         System.out.println("    1. introduce initCards on Cards");
         System.out.println("    2. on status, show initCards with Yellow and Blue points ");
         System.out.println("    3. secure Cards' private fields and fix calling methods");
         System.out.println("    4. ###Warning### String == IS NOT RIGHT");
         System.out.println();
-        
-        
+
         System.out.println("  === ver 0.36 ===  2014-4-25, 16:00, by Mark　");
         System.out.println("    1. introduce Points.java");
         System.out.println("    2. ***** new BlueBank and YellowBank extends Points *****");
