@@ -6,12 +6,20 @@
 
 package com.livehereandnow.ages.components;
 
-import com.livehereandnow.ages.exception.AgesException;
-
 /**
  *
  * @author mark
  */
-public class HappyFaces extends Points{
-  
+public class YellowBank extends Points {
+    HappyFaces happyFaces;
+
+    public HappyFaces getHappyFaces() {
+        return happyFaces;
+    }
+
+    public YellowBank() {
+        happyFaces=new HappyFaces();
+    }
+    
+    
 }

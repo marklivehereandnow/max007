@@ -585,6 +585,12 @@ public class Player {
     public boolean doPlayCard(int cardNum) throws AgesException {
 //         Card card=new Card();
 //         card=this.get手上的牌().get(cardNum);
+        if ((cardNum+1)> this.get手上的牌().size()){
+        System.out.println("... index of cards-on-hand should be from 0 to "+(this.get手上的牌().size()-1));
+        
+            return false; 
+        }
+        
         this.get桌上的牌().add(this.get手上的牌().get(cardNum));
         
         

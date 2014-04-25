@@ -10,7 +10,8 @@ package com.livehereandnow.ages.components;
  * @author max
  */
 public class Card implements CardType {
-
+    Points bluePoints;
+    Points yellowPoints;
     public Card(int ID, String 卡名, int 時代, int 牌背, int 類型, int 顏色, String 右上, String 內容, String 建造成本) {
 
         this.右上 = 右上;
@@ -23,6 +24,9 @@ public class Card implements CardType {
         this.類型 = 類型;
 //        this.建造成本 = 建造成本;
         wonderStage = new WonderStage(建造成本);
+        bluePoints=new Points();
+        yellowPoints=new Points();
+        
     }
 
     public String get右上() {
