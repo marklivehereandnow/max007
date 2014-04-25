@@ -76,10 +76,15 @@ public class Engine {
         }
     }
 
-    public boolean doVersion() {//想要拿取
+    public boolean doVersion() {
 
         System.out.println();
-                System.out.println("  === ver 0.34 ===  2014-4-25, 12:47, by Max　");
+        System.out.println("  === ver 0.35 ===  2014-4-25, 15:30, by Mark　");
+        System.out.println("    1. introduce HappyFaces.java");
+        System.out.println("    2. split Score from Player.java");
+        System.out.println("    3. TODO play 2, java.lang.IndexOutOfBoundsException: Index: 2, Size: 2");
+        System.out.println();
+        System.out.println("  === ver 0.34 ===  2014-4-25, 12:47, by Max　");
         System.out.println("    1. done 打出來的科技牌，激活該科技牌---時代1~3在農場和礦山各自只有1種應對的科技牌，時代I有2張，時代2.3各有1張");
         System.out.println("    2. done 奇蹟待建區完成後移至奇蹟建造完成區");
         System.out.println("    3. 優化status依照激活的方式展現科技");
