@@ -99,7 +99,7 @@ public class EngineCore {
         cardRow.show();
         System.out.println();
         System.out.println("   === Round #" + roundNum + ", " + this.當前玩家.getName() + " === ");
-        this.當前玩家.showCards();
+        this.當前玩家.showStatus();
 
 //        System.out.print("   --- Player A is " + 玩家[0].getName() + " ---");
 //        玩家[0].showStatus();
@@ -137,16 +137,24 @@ public class EngineCore {
 //            玩家[1].set內政點數(4);
 //            玩家[2].set內政點數(4);
 //            玩家[3].set內政點數(4);
-            玩家[0].getCivilCounter().setPoint(4);
-            玩家[1].getCivilCounter().setPoint(4);
-            玩家[2].getCivilCounter().setPoint(4);
-            玩家[3].getCivilCounter().setPoint(4);
+//            玩家[0].getCivilCounter().setPoint(4);
+//            玩家[1].getCivilCounter().setPoint(4);
+//            玩家[2].getCivilCounter().setPoint(4);
+//            玩家[3].getCivilCounter().setPoint(4);
 
+            
+            
         } else {
             當前玩家ID++;
         }
         this.set當前玩家(玩家[當前玩家ID]);
 
+        // ver 0.40
+        this.get當前玩家().getCivilCounter().setPoint(get當前玩家().getCurrentGovernment().getWhitePoints().getPoints());
+        this.get當前玩家().getMilitaryCounter().setPoint(get當前玩家().getCurrentGovernment().getRedPoints().getPoints());
+        
+        
+        
         // addCard
         if (roundNum >= 2) {
             System.out.println(" ... auto add cards");
@@ -225,6 +233,15 @@ public class EngineCore {
 
         return true;
     }
+    
+    public boolean doRevolution() throws AgesException {
+        return get當前玩家().doRevolution();
+    }
+    public boolean doChangeGovernment() throws AgesException {
+        return get當前玩家().doChangeGovernment();
+    }
+    
+    
 
     public boolean doFarm() throws AgesException {
 //            Card card = ;
@@ -317,4 +334,6 @@ public class EngineCore {
 //        System.out.println("    done, 在指令行能用什麼樣的指令，把數字放到剛剛建好的內部類Score,設定文明指數set-culture 3");//
 //        return true;
 //    }
+
+  
 }

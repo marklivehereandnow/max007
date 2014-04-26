@@ -32,6 +32,12 @@ public class Engine {
 
     public boolean doCmd(String keyword) throws IOException, AgesException {
         switch (keyword) {
+            case "revolution"://v0.39
+                return core.doRevolution();
+            case "govt"://v0.39
+            case "change-government"://v0.39
+                return core.doChangeGovernment();
+
             case "construct-wonder":
             case "wonder":
                 return core.doConstructWonder();
@@ -81,6 +87,11 @@ public class Engine {
 
         System.out.println();
         System.out.println("    ###Warning### String == IS NOT RIGHT");
+
+        System.out.println("  === ver 0.40 ===  2014-4-26, 12:50, by Mark　");
+        System.out.println("    1. new command revolution");
+        System.out.println("    2. after change-turn, update current player 內政點數 軍事點數 using  Govt: [A-專制--政府  White點:4 Red點:2] ");
+        System.out.println();
 
         System.out.println("  === ver 0.39 ===  2014-4-26, 11:15, by Mark　");
         System.out.println("    1. *** show init cards using Max's cards info***");

@@ -5,6 +5,9 @@
  */
 package com.livehereandnow.ages.components;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author max
@@ -13,7 +16,7 @@ public class Card implements CardType {
 
     private Points bluePoints;
     private Points yellowPoints;
-    
+
     //for Government Cards
     private Points whitePoints;
     private Points redPoints;
@@ -25,8 +28,6 @@ public class Card implements CardType {
     public Points getRedPoints() {
         return redPoints;
     }
-    
-    
 
     public Points getBluePoints() {
         return bluePoints;
@@ -36,8 +37,6 @@ public class Card implements CardType {
         return yellowPoints;
     }
 
-    
-    
     public Card(int ID, String 卡名, int 時代, int 牌背, int 類型, int 顏色, String 右上, String 內容, String 建造成本) {
 
         this.右上 = 右上;
@@ -50,8 +49,44 @@ public class Card implements CardType {
         this.類型 = 類型;
 //        this.建造成本 = 建造成本;
         wonderStage = new WonderStage(建造成本);
+        whitePoints = new Points();
+        redPoints = new Points();
         bluePoints = new Points();
         yellowPoints = new Points();
+
+        if (右上.equals("政府")) {
+            System.out.print("卡名:" + 卡名);
+            System.out.println(" ... constructor of Card, for 政府 card, to parse " + 內容);
+            String cmd = 內容;
+            String[] strTokens = cmd.split("，");// **it's in Chinese, 2 bytes***
+            //   List<String> tokens = new ArrayList<>();
+            for (String item : strTokens) {
+                if (item.length() > 0) {
+                    System.out.println("    =>" + item);
+                    //         tokens.add(item);
+                    String[] strTokens2 = item.split("[+]");
+//                    String[] strTokens2 = item.split("=");// **it's in English, 1 byte***
+//      
+                    
+                    if (strTokens2[0].equals("內政點數")) {
+                        System.out.println("     =>=>" + strTokens2[1] + " for 內政點數, whitePoints");
+                        
+                        this.whitePoints.setPoints(Integer.parseInt(strTokens2[1]));
+                    }
+                    if (strTokens2[0].equals("軍事點數")) {
+                        System.out.println("     =>=>" + strTokens2[1] + " for 軍事點數, redPoints");
+                        this.redPoints.setPoints(Integer.parseInt(strTokens2[1]));
+                   
+                    }
+                    
+                    //   System.out.println("     =>=>"+strTokens2[1]);
+
+                }
+            }
+            //System.out.println(" ... constructor of Card, for 政府 card, to parse 內政點數+4，軍事點數+2 ");
+            //   System.out.println(""+tokens);
+
+        }
 
     }
 
@@ -155,12 +190,11 @@ public class Card implements CardType {
         this.卡名 = 卡名;
         this.時代 = 時代;
         this.右上 = 右上;
-        yellowPoints=new Points();
-        bluePoints=new Points();
-        whitePoints=new Points();
-        redPoints=new Points();
-        
-        
+        yellowPoints = new Points();
+        bluePoints = new Points();
+        whitePoints = new Points();
+        redPoints = new Points();
+
     }
 
     public Card(int 編號, String 卡名, int 時代, int 類型) {
@@ -241,7 +275,7 @@ public class Card implements CardType {
     //String 卡名;
     @Override
     public String toString() {
-        return 卡名 + "(" + 加權值 + ")";
+        return "[" + 卡名 + "]";
     }
 
     public String toString(int k) {
@@ -274,25 +308,24 @@ public class Card implements CardType {
                     return "[] ";
                 }
                 return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + get類型Name() + "-" + get右上() + "-建造成本:" + wonderStage + "] ";
-           
-                
-             case 6://  0[A-Philosophy--實驗室  黃點:0 藍點:0]
+
+            case 6://  0[A-Philosophy--實驗室  黃點:0 藍點:0]
                 if (卡名.equalsIgnoreCase("")) {
                     return "[] ";
                 }
-                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() +"  黃點:"+yellowPoints+" 藍點:"+bluePoints + "] ";
+                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() + "  黃點:" + yellowPoints + " 藍點:" + bluePoints + "] ";
             case 7:// for Government card, 
                 if (卡名.equalsIgnoreCase("")) {
                     return "[] ";
                 }
-                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() +"  White點:"+whitePoints+" Red點:"+redPoints + "] ";
-           
+                return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() + "  White點:" + whitePoints + " Red點:" + redPoints + "] ";
+
             case 8://for govt card
                 if (卡名.equalsIgnoreCase("")) {
                     return "[] ";
                 }
                 return "[" + get只有時代的時代名() + get牌背名() + "-" + get卡名() + " " + get內容() + " 建造成本:" + wonderStage + "] ";
-            
+
             default:
                 return toString();
         }

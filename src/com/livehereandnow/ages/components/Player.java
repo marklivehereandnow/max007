@@ -18,9 +18,14 @@ import java.util.List;
 public class Player {
 
     private Counter civilCounter;
+    private Counter militaryCounter;
 
     public Counter getCivilCounter() {
         return civilCounter;
+    }
+
+    public Counter getMilitaryCounter() {
+        return militaryCounter;
     }
 
     private String name;
@@ -61,6 +66,51 @@ public class Player {
         System.out.println("農場0黃" + this.農場[0].get黃點());
         this.農場[0].set黃點(this.農場[0].get黃點() + 1);
         System.out.println("農場0黃" + this.農場[0].get黃點());
+        return true;
+    }
+
+    public boolean isAnyGovernmentCardOnHand() {
+        for (Card card : 手上的牌) {
+            if (card.get右上().equals("政府")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getIndexOfGovernmentCardOnHand() {
+        int k = -1;
+        for (Card card : 手上的牌) {
+            k++;
+            if (card.get右上().equals("政府")) {
+                return k;
+            }
+        }
+        return k;
+    }
+
+    public boolean doRevolution() throws AgesException {
+        System.out.println("DOING... Player.doRevolution()");
+        System.out.println("1. Do I have Govt card on hand?");
+        if (isAnyGovernmentCardOnHand()) {
+            System.out.println("   Yes, I have.");
+            System.out.println("2. What is the card number on hand?");
+            int cardIndex = getIndexOfGovernmentCardOnHand();
+            System.out.println("The index is " + cardIndex);
+            Card newGovt = 手上的牌.get(cardIndex);
+            System.out.println("3. Now, to replace the Govt with " + newGovt);
+            this.government = newGovt;
+            System.out.println("*** NOT TO ALLOW MORE THAN ONE GOVT CARD ON HAND ??? *** ");
+            
+            return true;
+        } else {
+            System.out.println("   No, I don't.");
+            return false;
+        }
+    }
+
+    public boolean doChangeGovernment() throws AgesException {
+        System.out.println("DOING... Player.doChangeGovernment()");
         return true;
     }
 
@@ -356,7 +406,7 @@ public class Player {
 
     private Card government;
 
-    public Card getGovernment() {
+    public Card getCurrentGovernment() {
         return government;
     }
 
@@ -405,7 +455,7 @@ public class Player {
 //        System.out.println("想要拿取 " + card.toString(1));
 
         for (int k = 0; k < this.get手上的牌().size(); k++) {
-            System.out.println("這是目前手上的牌 " + k + " " + this.get手上的牌().get(k).toString(1));
+//            System.out.println("這是目前手上的牌 " + k + " " + this.get手上的牌().get(k).toString(1));
             if (card.get卡名() == this.get手上的牌().get(k).get卡名()) {
                 return true;
             }
@@ -466,6 +516,7 @@ public class Player {
     //起始設定
     public Player() {
         civilCounter = new Counter();
+        militaryCounter = new Counter();
         失敗原因 = "";
         點數 = new Score();
         for (int k = 0; k < 4; k++) {
@@ -728,7 +779,8 @@ public class Player {
 
     public void showStatus() {
 //        System.out.print("\n   內政點數=" + get內政點數());
-        System.out.print("\n   內政點數=" + getCivilCounter().getPoint());
+        System.out.println("   內政點數=" + getCivilCounter().getPoint());
+        System.out.println("   軍事點數=" + getMilitaryCounter().getPoint());
 
         showCards();
         System.out.println("\n   " + get點數());
@@ -770,7 +822,7 @@ public class Player {
                 System.out.print(" (" + strAges[k] + ")" + get步兵(k).toString(2));
             }
         }
-
+        System.out.println("");
     }
 
     public void showCards() {
@@ -801,7 +853,7 @@ public class Player {
     }
 
     public void showGovernmentCard() {
-        System.out.println("   Govt: " + government.toString(8));
+        System.out.println("   Govt: " + government.toString(7));
 
     }
 

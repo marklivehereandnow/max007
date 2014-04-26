@@ -107,7 +107,7 @@ public class Cards implements CardType {
         // 1.1 Goverment card
         //
         initGovernment = new Card(10, "專制", 0, 內政, 科技, 橙色, "政府", "內政點數+4，軍事點數+2", "0");
-
+        System.out.println("   initial Govt card, done");
         //
         // 1.2 Other 5 cards
         //
@@ -129,6 +129,7 @@ public class Cards implements CardType {
         initCards.add(new Card(12, "農業", 0, 內政, 科技, 棕色, "農場", "食物生產+1", "2"));
         initCards.add(new Card(15, "青銅", 0, 內政, 科技, 棕色, "礦山", "資源生產+1", "2"));
         initCards.add(new Card(14, "戰士", 0, 內政, 科技, 紅色, "步兵", "軍力+1", "2"));
+        System.out.println("   initial 5 cards,哲學/宗教/農業/青銅/戰士 , done");
 
         //
         // 1. Cards for Card Row
