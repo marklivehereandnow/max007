@@ -774,9 +774,10 @@ public class Player {
     }
 
     public void showCards() {
+        System.out.println("--------------------------");
         showGovernmentCard();
-        System.out.print("\n   init牌 ");
         showInitCards();
+        System.out.println("--------------------------");
 
         System.out.print("\n   手牌 ");
         showCardsOnHand();
@@ -792,7 +793,7 @@ public class Player {
     }
 
     public void showInitCards() {
-        System.out.println();
+//        System.out.println();
         for (int k = 0; k < init牌.size(); k++) {
             System.out.println("     " + k + init牌.get(k).toString(6));
         }
@@ -800,7 +801,7 @@ public class Player {
     }
 
     public void showGovernmentCard() {
-        System.out.println("   Government: " + government.toString(7));
+        System.out.println("   Govt: " + government.toString(8));
 
     }
 

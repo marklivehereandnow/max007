@@ -96,25 +96,43 @@ public class Cards implements CardType {
     }
 
     public Cards() {
-        initGovernment = new Card("Despotism", 0, "???");
-        initGovernment.getWhitePoints().setPoints(4);
-        initGovernment.getRedPoints().setPoints(2);
-        
-        
-        initCards = new ArrayList<>();
-        Card card1 = new Card("Philosophy", 0, "實驗室");//神廟
-        Card card2 = new Card("Religion", 0, "神廟");//
-        Card card3 = new Card("Agriculture", 0, "農場");
-        Card card4 = new Card("Bronze", 0, "礦山");
-        Card card5 = new Card("Warriors", 0, "???");
-//        Card card6 = new Card("Despotism", 0, "???");
-        initCards.add(card1);
-        initCards.add(card2);
-        initCards.add(card3);
-        initCards.add(card4);
-        initCards.add(card5);
-//        initCards.add(card6);
+        //
+        // 1. Player's Initial Cards
+        //
 
+//        initGovernment = new Card("Despotism", 0, "???");
+//        initGovernment.getWhitePoints().setPoints(4);
+//        initGovernment.getRedPoints().setPoints(2);
+        //
+        // 1.1 Goverment card
+        //
+        initGovernment = new Card(10, "專制", 0, 內政, 科技, 橙色, "政府", "內政點數+4，軍事點數+2", "0");
+
+        //
+        // 1.2 Other 5 cards
+        //
+        initCards = new ArrayList<>();
+//        Card card1 = new Card("Philosophy", 0, "實驗室");//神廟
+//        Card card2 = new Card("Religion", 0, "神廟");//
+//        Card card3 = new Card("Agriculture", 0, "農場");
+//        Card card4 = new Card("Bronze", 0, "礦山");
+//        Card card5 = new Card("Warriors", 0, "???");
+////        Card card6 = new Card("Despotism", 0, "???");
+//        initCards.add(card1);
+//        initCards.add(card2);
+//        initCards.add(card3);
+//        initCards.add(card4);
+//        initCards.add(card5);
+
+        initCards.add(new Card(13, "哲學", 0, 內政, 科技, 灰色, "實驗室", "科技生產+1", "3"));
+        initCards.add(new Card(11, "宗教", 0, 內政, 科技, 灰色, "神廟", "笑臉+1，文化生產+1", "3"));
+        initCards.add(new Card(12, "農業", 0, 內政, 科技, 棕色, "農場", "食物生產+1", "2"));
+        initCards.add(new Card(15, "青銅", 0, 內政, 科技, 棕色, "礦山", "資源生產+1", "2"));
+        initCards.add(new Card(14, "戰士", 0, 內政, 科技, 紅色, "步兵", "軍力+1", "2"));
+
+        //
+        // 1. Cards for Card Row
+        //
         cards = new ArrayList<>();
         cards.add(new Card(1, "亞歷山大大帝", 0, 內政, 領袖, 綠色, "領袖", "每一個紅色科技牌上的黃點，軍力+1", "0"));
         cards.add(new Card(2, "亞里士多得", 0, 內政, 領袖, 綠色, "領袖", "拿取科技牌時，科技+1", "0"));
@@ -126,12 +144,12 @@ public class Cards implements CardType {
         cards.add(new Card(7, "巨人像", 0, 內政, 奇蹟, 紫色, "奇蹟", "軍力+1，文化生產+1，殖民點數+1", "3,3"));
         cards.add(new Card(8, "空中花園", 0, 內政, 奇蹟, 紫色, "奇蹟", "笑臉+2，文化生產+1", "2,2,2"));
         cards.add(new Card(9, "金字塔", 0, 內政, 奇蹟, 紫色, "奇蹟", "內政點數+1", "3,2,1"));
-        cards.add(new Card(10, "專制", 0, 內政, 科技, 橙色, "政府", "內政點數+4，軍事點數+2", "0"));
-        cards.add(new Card(11, "宗教", 0, 內政, 科技, 灰色, "神廟", "笑臉+1，文化生產+1", "3"));
-        cards.add(new Card(12, "農業", 0, 內政, 科技, 棕色, "農場", "食物生產+1", "2"));
-        cards.add(new Card(13, "哲學", 0, 內政, 科技, 灰色, "實驗室", "科技生產+1", "3"));
-        cards.add(new Card(14, "戰士", 0, 內政, 科技, 紅色, "步兵", "軍力+1", "2"));
-        cards.add(new Card(15, "青銅", 0, 內政, 科技, 棕色, "礦山", "資源生產+1", "2"));
+//        cards.add(new Card(10, "專制", 0, 內政, 科技, 橙色, "政府", "內政點數+4，軍事點數+2", "0"));
+//        cards.add(new Card(11, "宗教", 0, 內政, 科技, 灰色, "神廟", "笑臉+1，文化生產+1", "3"));
+//        cards.add(new Card(12, "農業", 0, 內政, 科技, 棕色, "農場", "食物生產+1", "2"));
+//        cards.add(new Card(13, "哲學", 0, 內政, 科技, 灰色, "實驗室", "科技生產+1", "3"));
+//        cards.add(new Card(14, "戰士", 0, 內政, 科技, 紅色, "步兵", "軍力+1", "2"));
+//        cards.add(new Card(15, "青銅", 0, 內政, 科技, 棕色, "礦山", "資源生產+1", "2"));
         cards.add(new Card(16, "富饒之土", 0, 內政, 行動, 黃色, "行動", "提供1資源建造農場或是礦山", "0"));
         cards.add(new Card(17, "工程天才", 0, 內政, 行動, 黃色, "行動", "提供2資源建造奇蹟", "0"));
         cards.add(new Card(18, "藝術作品", 0, 內政, 行動, 黃色, "行動", "文化+6", "0"));

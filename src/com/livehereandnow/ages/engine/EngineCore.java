@@ -98,9 +98,9 @@ public class EngineCore {
 
         cardRow.show();
         System.out.println();
-        System.out.println("   === Round #" + roundNum+", " +this.當前玩家.getName()+ " === ");
-         this.當前玩家.showCards();
-        
+        System.out.println("   === Round #" + roundNum + ", " + this.當前玩家.getName() + " === ");
+        this.當前玩家.showCards();
+
 //        System.out.print("   --- Player A is " + 玩家[0].getName() + " ---");
 //        玩家[0].showStatus();
 //        System.out.print("\n\n   --- Player B is " + 玩家[1].getName() + " ---");
@@ -222,15 +222,15 @@ public class EngineCore {
 //            Card card = ;
 //        int cardPoint = 1;//DEBUG，假設需要一個內政點數來打牌
         get當前玩家().doConstructWonder();
-           
 
         return true;
     }
-        public boolean doFarm() throws AgesException {
+
+    public boolean doFarm() throws AgesException {
 //            Card card = ;
 //        int cardPoint = 1;//DEBUG，假設需要一個內政點數來打牌
         System.out.println("EngineCore的DOFarm");
-            get當前玩家().doFarm();
+        get當前玩家().doFarm();
 
         return true;
     }
@@ -239,7 +239,7 @@ public class EngineCore {
 //            Card card = ;
 //        int cardPoint = 1;//DEBUG，假設需要一個內政點數來打牌
         get當前玩家().doPlayCard(k);
-        
+
         return true;
     }
 

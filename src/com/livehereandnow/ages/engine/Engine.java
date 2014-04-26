@@ -81,13 +81,26 @@ public class Engine {
 
         System.out.println();
         System.out.println("    ###Warning### String == IS NOT RIGHT");
-        
+
+        System.out.println("  === ver 0.39 ===  2014-4-26, 11:15, by Mark　");
+        System.out.println("    1. *** show init cards using Max's cards info***");
+
+        String strv039 = ""
+                + "-------------------------"
+                + "\nGovt: [A內政-專制 內政點數+4，軍事點數2 建造成本:0/0] "
+                + "\n0[A-哲學--實驗室  黃點:1 藍點:0] "
+                + "\n1[A-宗教--神廟  黃點:0 藍點:0] "
+                + "\n2[A-農業--農場  黃點:2 藍點:0] "
+                + "\n3[A-青銅--礦山  黃點:2 藍點:0] "
+                + "\n4[A-戰士--步兵  黃點:1 藍點:0]";
+        System.out.println(strv039);
+        System.out.println();
+
         System.out.println("  === ver 0.38 ===  2014-4-25, 17:45, by Mark　");
         System.out.println("    1. *** introduce government with white and red points***");
         System.out.println("    2. change status to show current player only");
         System.out.println("    3. show government card info on status with toString(7) ");
-        
-       
+
         System.out.println();
         System.out.println("  === ver 0.37 ===  2014-4-25, 17:20, by Mark　");
         System.out.println("    1. *** draf farm action***");

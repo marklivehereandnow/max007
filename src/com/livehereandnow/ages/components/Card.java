@@ -287,6 +287,11 @@ public class Card implements CardType {
                 }
                 return "[" + get只有時代的時代名() + "-" + get卡名() + "-" + "-" + get右上() +"  White點:"+whitePoints+" Red點:"+redPoints + "] ";
            
+            case 8://for govt card
+                if (卡名.equalsIgnoreCase("")) {
+                    return "[] ";
+                }
+                return "[" + get只有時代的時代名() + get牌背名() + "-" + get卡名() + " " + get內容() + " 建造成本:" + wonderStage + "] ";
             
             default:
                 return toString();
